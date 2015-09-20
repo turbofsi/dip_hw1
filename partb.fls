@@ -1,0 +1,6 @@
+PWD /Users/apple/Documents/2015-FALL/ECE1512-DIP/homework1
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT /Users/apple/Documents/2015-FALL/ECE1512-DIP/homework1/partb.tex
+OUTPUT /Users/apple/Documents/2015-FALL/ECE1512-DIP/homework1/partb.log

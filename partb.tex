@@ -27,10 +27,44 @@ The original image is shown in Figure \ref{fig:hisoriginal}
 	\caption{Original Image}
 	\label{fig:hisoriginal}
 \end{figure}
-To get the histogram of given image, we need to iterate all pixel values of the image and get the frequency of each intencity. Figure \ref{fig:hishist1} shows the output histogram of Figure \ref{fig:hisoriginal} after normalisation.
+To get the histogram of given image, we need to iterate all pixel values of the image and get the frequency of each intencity. Figure \ref{fig:hishist1} shows the output histogram of Figure \ref{fig:hisoriginal} after normalisation. We can note that most pixel values are on the dark side.
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.4]{historg}
 	\caption{Histogram of Figure \ref{fig:hisoriginal}}
 	\label{fig:hishist1}
 \end{figure}
+\subsubsection{Implemention of histogram equalization}
+To perform histogram equalization on given image, we could use the formula for histogram equalization in the discrete case
+$$ s_k = T(r_k) = \frac{L - 1}{MN}\sum_{j = 0}^{k} n_j $$
+\\[10cm]
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{hetrans}
+	\caption{Transformation function}
+	\label{fig:hetrans}
+\end{figure}
+
+Figure \ref{fig:hetrans} shows the transformation function. Figure \ref{fig:histeq} shows the comparision between the original image and the image after histogram equalization. We can notice that the produced image is much lighter than original image and we could get more details on the darker side of the image. However, the background became too light after histogram equalization, which reduce the contrast of image. Figure \ref{fig:histnew} shows the histogram of the produced image. \\
+\\
+The reason of the background became too light can be described as follows. As we can see from the histogram of original image in Figure \ref{fig:hishist1}, most of the pixel values in orinal image are concentrated neat 0. According to the formula for histogram equalization in the discrete case
+$ s_k = T(r_k) = \frac{L - 1}{MN}\sum_{j = 0}^{k} n_j $, if there are too many pixel values nears 0, then the output value $s$ will grow a lot for those input pixels with value near 0. As a result, the produced image have a washed-out appearance. 
+\begin{figure}[h]
+	\centering
+	\subfloat[Subfigure 1 list of figures text][Original Image]{
+		\includegraphics[width=0.2\textwidth]{0308}
+		\label{fig:histeqsub1}}
+	\subfloat[Subfigure 2 list of figures text][Image after histogram equalization]{
+		\includegraphics[width=0.2\textwidth]{histeq}
+		\label{fig:histeqsub2}}
+	\caption{Experiments results of histogram equalization}
+	\label{fig:histeq}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{histnew}
+	\caption{Histogram of produced image}
+	\label{fig:histnew}
+\end{figure}
+\newpage

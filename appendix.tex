@@ -1,0 +1,136 @@
+\section{Appendix}
+\subsection{Program of Log Transformation}
+\begin{lstlisting}
+%*****************
+%Student Name: Yang Wang
+%Student #: 1001319227
+%Title: Log Transformation
+%*****************
+clear;
+clc;
+cla;
+c = 3;
+G = imread('0308.tif');
+[rows, cols] = size(G);
+for i = 1 : rows
+    for j = 1 : cols
+       G(i, j) = c * log2(double(G(i, j))/255.0 + 1) * 255.0;
+    end
+end 
+figure();
+imshow(G);    
+\end{lstlisting}
+
+\subsection{Power-Law Transformation}
+\begin{lstlisting}
+%*****************
+%Student Name: Yang Wang
+%Student #: 1001319227
+%Title: Log Transformation
+%*****************
+clear;
+clc;
+cla;
+c = 1;
+gamma = 0.4;
+G = imread('0308.tif');
+[rows, cols] = size(G);
+for i = 1 : rows 
+    for j = 1 : cols
+        G(i, j) = c * 255 * (double(G(i, j))/255)^gamma;
+    end
+end
+figure(2);
+imshow(G);   
+\end{lstlisting}
+
+\subsection{Program of computing histogram}
+\begin{lstlisting}
+%*****************
+%Student Name: Yang Wang
+%Student #: 1001319227
+%Title: Computing Histogram of image
+%*****************
+
+clear;
+clc;
+cla;
+G = imread('0308.tif');
+H = zeros(1, 256);
+[rows, cols] = size(G);
+for i = 1 : rows
+    for j = 1 : cols
+       H(1, G(i, j) + 1) = H(1, G(i, j) + 1) + 1;
+    end
+end
+%show histogram of image after normalization
+x = 0 : 255;
+figure(1)
+H = H * 100 / (rows * cols);
+stem = stem(x, H);
+set(stem, 'Marker', 'none');
+axis([0 255 0 10]);
+\end{lstlisting}
+
+\subsection{Program of histogram equalization}
+\begin{lstlisting}
+%*****************
+%Student Name: Yang Wang
+%Student #: 1001319227
+%Title: Histogram Equalization
+%*****************
+
+clear;
+clc;
+cla;
+G = imread('0308.tif');
+H = zeros(1, 256);
+[rows, cols] = size(G);
+for i = 1 : rows
+    for j = 1 : cols
+       H(1, G(i, j) + 1) = H(1, G(i, j) + 1) + 1;
+    end
+end
+nums = rows * cols - 1;
+collects = zeros(1, 256);
+for i = 1 : 256
+    if(i == 1) 
+        collects(i) = (double(H(i)) / nums) * 255;
+    else
+        collects(i) = (double(H(i)) / nums) * 255 + collects(i - 1);
+    end
+end
+k = uint8(collects);
+for i = 1 : rows
+    for j = 1 : cols
+       G(i, j) = k(1, G(i, j) + 1);
+    end
+end
+%show image after HE
+figure(1);
+imshow(G);
+x = 1 : 256;
+
+%transformation function
+figure(2);
+s2 = plot(x, k);
+xlabel('r');
+ylabel('s');
+axis([0 255 0 255]);
+
+%histogram after HE
+H = zeros(1, 256);
+[rows, cols] = size(G);
+for i = 1 : rows
+    for j = 1 : cols
+       H(1, G(i, j) + 1) = H(1, G(i, j) + 1) + 1;
+    end
+end
+x = 0 : 255;
+
+figure(3)
+H = H * 100 / (rows * cols);
+stem = stem(x, H);
+set(stem, 'Marker', 'none');
+axis([0 255 0 10]);
+\end{lstlisting}

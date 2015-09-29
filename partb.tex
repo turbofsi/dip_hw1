@@ -8,14 +8,14 @@ if $p_r(r)$ and $T(r)$ are known and $T(r)$ is continuous and differentiable, th
 $$ p_s(s) = p_r(r)\frac{1}{\left| \frac{ds}{dr} \right|} = p_r(r)\left| \frac{dr}{ds} \right| $$ 
 Cumulative distribution function of a random Variable:
 $$s = T(r) = (L - 1)\int_0^r p_r(w)dw$$
-To fund $p_s(s)$ we have to compute
+To find $p_s(s)$ we have to compute
 $$ \frac{ds}{dr} = \frac{dT(r)}{dr} = (L - 1)\frac{d}{dr}\int_0^r p_r(w)dw = (L - 1)p_r(r) $$
 Substituting this result:
 $$ \frac{ds}{dr} = (L - 1)p_r(r) $$
 to 
 $$ p_s(s) = p_r(r)\left| \frac{dr}{ds} \right| $$
 yields
-$$p_s(s) = p_r(r)\left| \frac{1}{(L - 1)p_r(r)} = \frac{1}{L - 1} \right|, 0 \leq s \leq L - 1 $$
+$$p_s(s) = p_r(r)\left| \frac{1}{(L - 1)p_r(r)} \right| = \frac{1}{L - 1} , 0 \leq s \leq L - 1 $$
 The formula for histogram equalisation in the discrete case is given
 $$ s_k = T(r_k) = (L - 1)\sum_{j = 0}^k p_r(r_j) = \frac{L - 1}{MN}\sum_{j = 0}^{k} n_j $$
 \subsection{Discussion of Results}
